@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Contato</h1>
+
+        <% if (sucesso) { %>
+            <p><%= sucesso %></p>
+        <% } %>
+
+        <%
+            let mensagens = {};
+
+            erros.forEach(erro => {
+                mensagens[erro.path] = erro.msg;
+            });
+        %>
+
+        <form action="/enviar" method="POST" novalidate>
+
+            <label>Nome</label>
+            <input type="text" name="nome" value="<%= dados.nome || '' %>">
+            <small><%= mensagens.nome || '' %></small>
+
+            <label>E-mail</label>
+            <input type="email" name="email" value="<%= dados.email || '' %>">
+            <small><%= mensagens.email || '' %></small>
+
+            <label>Telefone</label>
+            <input type="tel" name="telefone" value="<%= dados.telefone || '' %>">
+            <small><%= mensagens.telefone || '' %></small>
+
+            <label>Assunto</label>
+            <input type="text" name="assunto" value="<%= dados.assunto || '' %>">
+            <small><%= mensagens.assunto || '' %></small>
+
+            <label>Mensagem</label>
+            <textarea name="mensagem"><%= dados.mensagem || '' %></textarea>
+            <small><%= mensagens.mensagem || '' %></small>
+
+            <button type="submit">Enviar</button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
